@@ -20,6 +20,13 @@
                         data.columnHeaderData[i].columnName = temp[1];
                         data.columnHeaderData[i].code = temp[0];
                     }
+
+                    if(data.columnHeaderData[i].columnName.startsWith("hd_")){
+                        temp = data.columnHeaderData[i].columnName.split("hd_");
+                        data.columnHeaderData[i].columnName = temp[1];
+                    }else {
+                        data.columnHeaderData[i].visible = true;
+                    }
                 }
                 scope.datatable = data;
             });

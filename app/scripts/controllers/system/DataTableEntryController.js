@@ -26,7 +26,7 @@
             }
 
             resourceFactory.DataTablesResource.getTableDetails(reqparams, function (data) {
-                for (var i in data.columnHeaders) {
+                for (var  i in data.columnHeaders) {
                     if (data.columnHeaders[i].columnCode) {
                         //logic for display codeValue instead of codeId in view datatable details
                         for (var j in data.columnHeaders[i].columnValues) {
@@ -41,7 +41,13 @@
                             }
                         }
                     } else {
-                        data.columnHeaders[i].value = data.data[0].row[i];
+                        if(data.columnHeaders[i].columnName.startsWith('hd_')){
+                            data.columnHeaders.splice(i,1);
+                            data.data[0].row.splice(i,1);
+                        }
+                        else{
+                            data.columnHeaders[i].value = data.data[0].row[i];
+                        }
                     }
                 }
                 scope.columnHeaders = data.columnHeaders;
