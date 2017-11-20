@@ -89,6 +89,7 @@
 	                            <th>{{'label.heading.name' | translate}}</th>
 	                            <th>{{'label.heading.type' | translate}}</th>
 	                            <th>{{'label.heading.mandatory' | translate}}</th>
+								<th>{{'label.heading.visible' | translate}}</th>
 	                            <th>{{'label.heading.length' | translate}}</th>
 	                            <th>{{'label.heading.code' | translate}}</th>
 	                            <th>{{'label.heading.actions' | translate}}</th>
@@ -116,6 +117,9 @@
 	                            <td align="center">
 	                                <input ng-model="column.mandatory" type="checkbox"/>
 	                            </td>
+								<td align="center">
+									<input ng-model="column.visible" type="checkbox" ng-disabled="column.type == 'dropdown'"/>
+								</td>
 	                            <td>
 	                                <input ng-show="column.type == 'String'" ng-model="column.length" type="text"
 	                                       class="input-sm form-control"/>
