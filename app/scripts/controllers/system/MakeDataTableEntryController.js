@@ -25,6 +25,10 @@
                     if (data.columnHeaders[i].columnDisplayType == 'DATETIME') {
                         scope.formDat[data.columnHeaders[i].columnName] = {};
                     }
+
+                    if(data.columnHeaders[i].columnName.startsWith('hd_')){
+                        data.columnHeaders.splice(i,1);
+                    }
                 }
                 scope.columnHeaders = data.columnHeaders;
 

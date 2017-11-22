@@ -37,6 +37,13 @@
                         data.columnHeaderData[i].code = temp[0];
                     }
 
+                    if(data.columnHeaderData[i].columnName.startsWith("hd_")){
+                        temp = data.columnHeaderData[i].columnName.split("hd_");
+                        data.columnHeaderData[i].columnName = temp[1];
+                    }else {
+                        data.columnHeaderData[i].visible = true;
+                    }
+
                     var tempColumn = {name: data.columnHeaderData[i].columnName, mandatory: !data.columnHeaderData[i].isColumnNullable};
                     tempColumn.originalName = data.columnHeaderData[i].originalName;
                     var colType = data.columnHeaderData[i].columnDisplayType.toLowerCase();
@@ -56,6 +63,9 @@
                     if (data.columnHeaderData[i].columnCode) {
                         tempColumn.code = data.columnHeaderData[i].columnCode;
                     }
+                    if (data.columnHeaderData[i].visible) {
+                        tempColumn.visible = data.columnHeaderData[i].visible;
+                    }
 
                     scope.columns.push(tempColumn);
                 }
@@ -65,7 +75,7 @@
                 if (scope.datatableTemplate.columnName && scope.datatableTemplate.columnType) {
                     scope.columnnameerror = false;
                     scope.columntypeerror = false;
-                    scope.columns.push({name: scope.datatableTemplate.columnName, type: scope.datatableTemplate.columnType, mandatory: false});
+                    scope.columns.push({name: scope.datatableTemplate.columnName, type: scope.datatableTemplate.columnType, mandatory: false, visible: true});
                     scope.datatableTemplate.columnName = undefined;
                     scope.datatableTemplate.columnType = undefined;
                 } else if (!scope.datatableTemplate.columnName) {
@@ -113,6 +123,8 @@
                          }
                          }*/
 
+                        if(scope.columns[i].originalName.indexOf("_cd_") == -1)
+                            scope.columns[i].name = scope.columns[i].originalName;
                         delete scope.columns[i].originalName;
                         delete scope.columns[i].type;
 
@@ -123,9 +135,24 @@
                         if (scope.columns[i].name) {
                             scope.columns[i].newName = scope.columns[i].newName || scope.columns[i].name;
                         }
+                        if (!scope.columns[i].visible && !scope.columns[i].name.startsWith("hd_") ) {
+                            scope.columns[i].newName = "hd_" + scope.columns[i].name;
+                            delete scope.columns[i].visible;
+                        }else {
+                            if(scope.columns[i].visible && scope.columns[i].name.startsWith("hd_")){
+                                scope.columns[i].newName = scope.columns[i].name.split("hd_")[1];
+                            }
+                            delete scope.columns[i].visible;
+                        }
                         scope.formData.changeColumns.push(scope.columns[i]);
 
                     } else {
+                        if (!scope.columns[i].visible) {
+                            scope.columns[i].name = "hd_" + scope.columns[i].name;
+                            delete scope.columns[i].visible;
+                        }else {
+                            delete scope.columns[i].visible;
+                        }
                         scope.formData.addColumns.push(scope.columns[i]);
                     }
                 }

@@ -80,6 +80,7 @@
                                 <th class="paddedleft0">{{'label.heading.newname' | translate}}</th>
                                 <th class="paddedleft0">{{'label.heading.type' | translate}}</th>
                                 <th class="paddedleft0">{{'label.heading.mandatory' | translate}}</th>
+                                <th class="paddedleft0">{{'label.heading.visible' | translate}}</th>
                                 <th class="paddedleft0">{{'label.heading.length' | translate}}</th>
                                 <th class="paddedleft0">{{'label.heading.code' | translate}}</th>
                                 <th class="paddedleft0">{{'label.heading.newcode' | translate}}</th>
@@ -114,6 +115,7 @@
                                     </select>
                                 </td>
                                 <td align="center" class="paddedleft0"><input ng-model="column.mandatory" type="checkbox"/></td>
+                                <td align="center" class="paddedleft0"><input ng-model="column.visible" type="checkbox" ng-disabled="column.type == 'dropdown'"/></td>
                                 <td class="paddedleft0">
                                     <input ng-show="column.type == 'string'" ng-model="column.length" type="text"
                                            class="input-sm form-control"/>

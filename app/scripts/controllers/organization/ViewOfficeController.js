@@ -29,6 +29,13 @@
                                 }
                             }
                         }
+
+                        if(scope.datatabledetails.columnHeaders[i].columnName.startsWith('hd_')){
+                            scope.datatabledetails.columnHeaders.splice(i,1);
+                            for (var j in scope.datatabledetails.data){
+                                scope.datatabledetails.data[j].row.splice(i,1);
+                            }
+                        }
                     }
                     if (scope.datatabledetails.isData) {
                         for (var i in data.columnHeaders) {

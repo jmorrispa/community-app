@@ -426,6 +426,7 @@
                     scope.showDataTableEditButton = scope.datatabledetails.isData && !scope.datatabledetails.isMultirow;
                     scope.singleRow = [];
                     for (var i in data.columnHeaders) {
+
                         if (scope.datatabledetails.columnHeaders[i].columnCode) {
                             for (var j in scope.datatabledetails.columnHeaders[i].columnValues) {
                                 for (var k in data.data) {
@@ -433,6 +434,13 @@
                                         data.data[k].row[i] = scope.datatabledetails.columnHeaders[i].columnValues[j].value;
                                     }
                                 }
+                            }
+                        }
+
+                        if(scope.datatabledetails.columnHeaders[i].columnName.startsWith('hd_')){
+                            scope.datatabledetails.columnHeaders.splice(i,1);
+                            for (var j in scope.datatabledetails.data){
+                                scope.datatabledetails.data[j].row.splice(i,1);
                             }
                         }
                     }

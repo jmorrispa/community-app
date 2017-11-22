@@ -16,7 +16,7 @@
                 if (scope.datatableTemplate.columnName && scope.datatableTemplate.columnType) {
                     scope.columnnameerror = false;
                     scope.columntypeerror = false;
-                    scope.columns.push({name: scope.datatableTemplate.columnName, type: scope.datatableTemplate.columnType, mandatory: false});
+                    scope.columns.push({name: scope.datatableTemplate.columnName, type: scope.datatableTemplate.columnType, mandatory: false, visible: true});
                     scope.datatableTemplate.columnName = undefined;
                     scope.datatableTemplate.columnType = undefined;
                 } else if (!scope.datatableTemplate.columnName) {
@@ -51,6 +51,13 @@
                     delete scope.errorDetails;
                     scope.formData.multiRow = scope.formData.multiRow || false;
                     scope.formData.columns = scope.columns;
+
+                    for(var i in scope.formData.columns){
+                        if (!scope.formData.columns[i].visible) {
+                            scope.formData.columns[i].name = "hd_" + scope.formData.columns[i].name;
+                        }
+                        delete scope.formData.columns[i].visible;
+                    }
                     resourceFactory.DataTablesResource.save(this.formData, function (data) {
                         location.path('/viewdatatable/' + data.resourceIdentifier);
                     });
