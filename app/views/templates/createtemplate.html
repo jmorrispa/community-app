@@ -82,7 +82,7 @@
 	            </div>
 	            <div class="col-sm-3 col-md-3 paddedleft">
 	                <accordion close-others="true" ng-repeat="entity in templateEntity">
-	                    <accordion-group heading="{{entity.entityName}}">
+	                    <accordion-group heading="{{entity.entityName}}" ng-click="updateMapper(entity.entityName)">
 	                        <div ng-repeat="templateKey in entity.templateKeys" class="templatekeys"
 	                             ng-click="templateKeySelected(templateKey)">{{templateKey}}
 	                        </div>
