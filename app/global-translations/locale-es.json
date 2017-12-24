@@ -3437,5 +3437,10 @@
 	"label.heading.Survey": "Encuesta",
 	"label.anchor.survey": "Encuesta",
 	"label.surveyName": "Nombre de la encuesta",
-	"label.selectsurvey": "Selecciona una encuesta"
+	"label.selectsurvey": "Selecciona una encuesta",
+
+
+
+	"label.heading.datatablescreenreport": " Pantalla de Informes",
+	"label.button.datatablescreenreport": "Ver Pantalla de Informe"
 }

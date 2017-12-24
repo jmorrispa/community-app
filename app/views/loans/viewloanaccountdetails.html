@@ -838,6 +838,9 @@
                          select="dataTableChange(loandatatable)">
                         <div>
                             <div data-ng-show="choice" class="btn-group pull-right">
+                                <a data-ng-show="showDataTableReportButton"
+                                   ng-href="#/datatablescreenreport/{{loandatatable.registeredTableName}}/{{loandetails.id}}"
+                                   class="btn btn-default">{{'label.button.datatablescreenreport' | translate}}</a>
                                 <a ng-show="datatabledetails.isData" class="btn btn-danger pull-right"
                                    has-permission='DELETE_{{loandatatable.registeredTableName}}'
                                    ng-click="deleteAll(loandatatable.registeredTableName, loandetails.id)"><i

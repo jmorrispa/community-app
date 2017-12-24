@@ -7,6 +7,7 @@
             scope.formData = {};
             scope.report = false;
             scope.hidePentahoReport = true;
+            resourceFactory.setEntityFromDatatable("center");
             resourceFactory.centerResource.get({centerId: routeParams.id, associations: 'groupMembers,collectionMeetingCalendar'}, function (data) {
                 scope.center = data;
                 scope.isClosedCenter = scope.center.status.value == 'Closed';
@@ -91,6 +92,7 @@
                     scope.datatabledetails.isMultirow = data.columnHeaders[0].columnName == "id" ? true : false;
                     scope.showDataTableAddButton = !scope.datatabledetails.isData || scope.datatabledetails.isMultirow;
                     scope.showDataTableEditButton = scope.datatabledetails.isData && !scope.datatabledetails.isMultirow;
+                    scope.showDataTableReportButton = scope.datatabledetails.isData && !scope.datatabledetails.isMultirow;
                     scope.singleRow = [];
                     for (var i in data.columnHeaders) {
                         if (scope.datatabledetails.columnHeaders[i].columnCode) {

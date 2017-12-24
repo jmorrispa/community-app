@@ -12,6 +12,7 @@
             scope.openShares = true ;
             scope.updateDefaultSavings = false;
             scope.charges = [];
+            resourceFactory.setEntityFromDatatable("client");
             scope.routeToLoan = function (id) {
                 location.path('/viewloanaccount/' + id);
             };
@@ -424,6 +425,7 @@
                     scope.datatabledetails.isMultirow = data.columnHeaders[0].columnName == "id" ? true : false;
                     scope.showDataTableAddButton = !scope.datatabledetails.isData || scope.datatabledetails.isMultirow;
                     scope.showDataTableEditButton = scope.datatabledetails.isData && !scope.datatabledetails.isMultirow;
+                    scope.showDataTableReportButton = scope.datatabledetails.isData && !scope.datatabledetails.isMultirow;
                     scope.singleRow = [];
                     for (var i in data.columnHeaders) {
 

@@ -394,6 +394,9 @@
                 <tab heading="{{savingdatatable.registeredTableName}}" ng-repeat="savingdatatable in savingdatatables" has-permission='READ_{{savingdatatable.registeredTableName}}'
                      select="dataTableChange(savingdatatable)">
                     <div data-ng-show="choice" class="btn-group pull-right">
+                        <a data-ng-show="showDataTableReportButton"
+                           ng-href="#/datatablescreenreport/{{savingdatatable.registeredTableName}}/{{savingaccountdetails.id}}"
+                           class="btn btn-default">{{'label.button.datatablescreenreport' | translate}}</a>
                         <a ng-show="datatabledetails.isData" class="btn btn-danger pull-right"
                            has-permission='DELETE_{{savingdatatable.registeredTableName}}'
                            ng-click="deleteAll(savingdatatable.registeredTableName, savingaccountdetails.id)"><i
