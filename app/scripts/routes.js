@@ -884,6 +884,12 @@
             .when('/shareproduct/:productId/:dividendId/:action', {
                 templateUrl: 'views/products/shareproductactions.html'
             })
+            .when('/datatablescreenreport/:tableName/:entityId/:resourceId', {
+                templateUrl: 'views/system/datatablescreenreport.html'
+            })
+            .when('/datatablescreenreport/:tableName/:entityId', {
+                templateUrl: 'views/system/datatablescreenreport.html'
+            })
         ;
         $locationProvider.html5Mode(false);
     };

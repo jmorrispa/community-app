@@ -3934,5 +3934,8 @@
     "label.heading.escheatLiability":"Escheat Liability",
     "label.input.escheatLiability":"Escheat Liability",
     "label.tooltip.escheatLiability":"Liability Account where escheated funds are maintained",
-    "label.heading.lastActive":"Last Active"
+    "label.heading.lastActive":"Last Active",
+
+    "label.heading.datatablescreenreport": " Screen Reports",
+    "label.button.datatablescreenreport": "View Screen Reports"
 }

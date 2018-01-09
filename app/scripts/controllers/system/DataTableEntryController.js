@@ -203,6 +203,10 @@
                 });
             };
 
+            scope.viewscreenreports = function () {
+                location.path("/datatablescreenreport/" + scope.tableName + "/" + scope.entityId + "/" + scope.resourceId);
+            }
+
         }
     });
     mifosX.ng.application.controller('DataTableEntryController', ['$scope', '$location', '$routeParams', '$route', 'ResourceFactory', '$modal', 'dateFilter', mifosX.controllers.DataTableEntryController]).run(function ($log) {

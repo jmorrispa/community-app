@@ -157,6 +157,7 @@ define(['Q', 'underscore', 'mifosX'], function (Q) {
             'system/EditDataTableController',
             'system/MakeDataTableEntryController',
             'system/DataTableEntryController',
+            'system/DatatableScreenReportController',
             'system/SchedulerJobsController',
             'system/ViewSchedulerJobController',
             'system/EditSchedulerJobController',

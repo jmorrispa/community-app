@@ -10,6 +10,7 @@
             this.setTenantIdenetifier = function (tenant) {
                 tenantIdentifier = tenant;
             }
+
             this.$get = ['$resource', '$rootScope', function (resource, $rootScope) {
                 var defineResource = function (url, paramDefaults, actions) {
                     var tempUrl = baseUrl;
@@ -17,6 +18,7 @@
                     $rootScope.tenantIdentifier = tenantIdentifier;
                     return resource(baseUrl + url, paramDefaults, actions);
                 };
+                var entityFromDatatable = "";
                 return {
                     userResource: defineResource(apiVer + "/users/:userId", {userId: '@userId'}, {
                         getAllUsers: {method: 'GET', params: {fields: "id,firstname,lastname,username,officeName"}, isArray: true},
@@ -600,11 +602,14 @@
                         post: {method: 'POST', params:{}},
                         put: {method: 'PUT', params:{}},
                         approve: {method: 'PUT', params:{command: 'approve'}}
-                    })
+                    }),
+                    setEntityFromDatatable: function (entity) { entityFromDatatable = entity; },
+                    getEntityFromDatatable: function () { return entityFromDatatable; }
                 };
             }];
         }
     });
+
     mifosX.ng.services.config(function ($provide) {
         $provide.provider('ResourceFactory', mifosX.services.ResourceFactoryProvider);
     }).run(function ($log) {

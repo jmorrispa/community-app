@@ -40,6 +40,9 @@
              select="dataTableChange(officedatatable)" has-permission='READ_{{officedatatable.registeredTableName}}'>
             <div>
                 <div class="btn-group pull-right">
+                    <a data-ng-show="showDataTableReportButton"
+                       ng-href="#/datatablescreenreport/{{officedatatable.registeredTableName}}/{{office.id}}"
+                       class="btn btn-default">{{'label.button.datatablescreenreport' | translate}}</a>
                     <a ng-show="datatabledetails.isData" class="btn btn-danger pull-right"
                        ng-click="deleteAll(officedatatable.registeredTableName, office.id)" has-permission='DELETE_{{officedatatable.registeredTableName}}'><i
                             class="icon-trash icon-white"></i>{{'label.button.deleteall' | translate}}</a>

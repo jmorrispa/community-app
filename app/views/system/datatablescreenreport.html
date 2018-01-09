@@ -1,0 +1,21 @@
+<div class="col-md-12" ng-controller="DatatableScreenReportController">
+    <legend>{{'label.heading.datatablescreenreport' | translate}}</legend>
+    <div class="span"></div>
+    <div class="col-sm-3 col-md-3">
+        <table class="table">
+            <tr ng-repeat="templateData in datatableTemplateData" ng-class="{graybg: templateData.id == selectedTemplate}">
+                <td>
+                    <a ng-click="getDatatableTemplate(templateData.id)">{{templateData.name}}</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-sm-8 col-md-8" ng-show="template">
+        <span ng-bind-html="template"></span>
+    <span class="col-md-offset-3 paddedtop10">
+       <button type="button" data-ng-click="print(template)" class="btn btn-primary"><i class="icon-print"></i>&nbsp;&nbsp;{{'label.button.print'|
+           translate}}
+       </button>
+    </span>
+    </div>
+</div>

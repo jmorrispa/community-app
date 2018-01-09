@@ -3,6 +3,8 @@
         EditTemplateController: function (scope, resourceFactory, location, routeParams, $rootScope) {
             scope.mappers = [];
             scope.formData = {};
+            scope.templateEntity = [];
+            scope.datatableTemplateKeys = [];
             resourceFactory.templateResource.getTemplateDetails({templateId: routeParams.id, resourceType: 'template'}, function (data) {
                 scope.template = data;
                 scope.templateId = data.template.id;
@@ -48,6 +50,8 @@
                     scope.clientKeys();
                 } else if (data.template.entity == "loan") {
                     scope.loanKeys();
+                } else if (data.template.entity == "datatable") {
+                    scope.datatablesKeys();
                 }
                 CKEDITOR.instances.templateeditor.insertHtml(data.template.text);
             });
@@ -87,9 +91,19 @@
                 }
             }
 
+            scope.datatablesKeys = function(){
+                scope.templateEntity.splice(0, scope.templateEntity.length);
+                for(i=0; i<scope.template.datatablesKeys.length; i++){
+                    scope.datatableTemplateKeys[i] = scope.template.datatablesKeys[i];
+                    scope.templateEntity.push({"entityName": scope.datatableTemplateKeys[i].registeredTableName,
+                        "templateKeys": scope.datatableTemplateKeys[i].templateKeys});
+                }
+
+            };
+
             scope.entityChange = function (entityId) {
                 scope.mappers.splice(0, 1);
-                if (entityId != 0) {
+                if (entityId == 1) {
                     scope.mappers.push({
                         mappersorder: 0,
                         mapperskey: "loan",
@@ -98,7 +112,7 @@
                     });
                     scope.loanKeys();
                     scope.templateKeyEntity = "Loan";
-                } else {
+                } else  if(entityId == 0){
                     scope.templateKeyEntity = "Client";
                     scope.mappers.push({
                         mappersorder: 0,
@@ -107,6 +121,15 @@
                         disable: 'true'
                     });
                     scope.clientKeys();
+                }else if(entityId == 2){
+                    scope.templateKeyEntity = "datatable";
+                    scope.mappers.push({
+                        mappersorder: 0,
+                        mapperskey: scope.datatableTemplateKeys[0].templateMapper.mapperKey,
+                        mappersvalue: scope.datatableTemplateKeys[0].templateMapper.mapperValue+ $rootScope.tenantIdentifier,
+                        defaultAddIcon: 'true'
+                    });
+                    scope.datatablesKeys();
                 }
             }
 
@@ -125,6 +148,20 @@
             scope.deleteMapperKeyValue = function (index) {
                 scope.mappers.splice(index, 1);
             }
+
+            scope.updateMapper = function(entityName){
+                if(scope.templateKeyEntity == "datatable"){
+                    found = false;
+                    i = 0;
+                    while(!found && i <= scope.template.datatablesKeys.length){
+                        if(scope.datatableTemplateKeys[i].registeredTableName == entityName){
+                            scope.mappers[0].mappersvalue = scope.datatableTemplateKeys[i].templateMapper.mapperValue+ $rootScope.tenantIdentifier;
+                            found = true;
+                        }else
+                            i++;
+                    }
+                }
+            };
 
             scope.advanceOptionClick = function () {
                 if (scope.advanceOption == 'false') {

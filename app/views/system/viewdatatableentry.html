@@ -3,8 +3,11 @@
         <h2>{{ 'label.heading.viewdatatableentry' | translate }}</h2>
 
         <div class="row pull-right btn-group">
-            <a ng-click="editDatatableEntry()" class="btn btn-primary" has-permission='UPDATE_{{tableName}}'><i class="icon-edit icon-white"></i>{{
-                'label.button.edit' | translate }}</a>
+            <button type="button" ng-click="viewscreenreports()" class="btn btn-default" >{{ 'label.button.datatablescreenreport' | translate }}
+            </button>
+            <a ng-click="editDatatableEntry()" class="btn btn-primary" has-permission='UPDATE_{{tableName}}'>
+                <i class="icon-edit icon-white"></i>{{'label.button.edit' | translate }}
+            </a>
             <button type="button" ng-click="deleteDatatableEntry()" class="btn btn-danger" has-permission='DELETE_{{tableName}}'><i
                     class="icon-trash icon-white"></i> {{ 'label.button.delete' | translate }}
             </button>
